@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ANARCHY — الكيان</title>
+<meta name="description" content="Anarchy Crew — عيلة واحدة، فوضى واحدة، كلمة واحدة." />
+<meta name="theme-color" content="#050405" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23050405'/%3E%3Ctext x='50' y='74' font-size='72' font-family='Impact,sans-serif' text-anchor='middle' fill='%23e1121b'%3EA%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Cairo:wght@400;600;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css?v=4" />
+</head>
+<body class="is-loading">
+
+<!-- ===== NOISE / SCANLINE OVERLAYS ===== -->
+<div class="fx-grain" aria-hidden="true"></div>
+<div class="fx-scanlines" aria-hidden="true"></div>
+<div class="fx-vignette" aria-hidden="true"></div>
+
+<!-- ===== CUSTOM CURSOR ===== -->
+<div class="cursor" id="cursor" aria-hidden="true"><span class="cursor__dot"></span><span class="cursor__ring"></span></div>
+
+<!-- ===== SCROLL PROGRESS ===== -->
+<div class="progress" aria-hidden="true"><span class="progress__bar" id="progressBar"></span></div>
+
+<!-- ===== PRELOADER ===== -->
+<div class="preloader" id="preloader" role="status" aria-live="polite">
+  <div class="preloader__bg" aria-hidden="true"></div>
+  <div class="preloader__mono" aria-hidden="true">
+    <span>SYS://ANARCHY</span>
+    <span id="preClock">00:00:00</span>
+  </div>
+
+  <div class="preloader__inner">
+    <div class="preloader__emblem" id="preEmblem"></div>
+    <div class="preloader__word" aria-hidden="true" dir="ltr">ANARCHY</div>
+
+    <div class="preloader__meta">
+      <span class="preloader__status" id="preStatus">تهيئة الكيان…</span>
+      <span class="preloader__percent"><b id="prePercent">0</b>%</span>
+    </div>
+    <div class="preloader__track"><span class="preloader__fill" id="preFill"></span></div>
+
+    <div class="preloader__lines" aria-hidden="true">
+      <span>LOADING CORE</span><span>BYPASS SECURITY</span><span>RENDER SIGNAL</span>
+    </div>
+  </div>
+
+  <div class="preloader__corner preloader__corner--a" aria-hidden="true"></div>
+  <div class="preloader__corner preloader__corner--b" aria-hidden="true"></div>
+</div>
+
+<!-- ===== SITE ===== -->
+<div class="site" id="site">
+
+  <!-- HEADER -->
+  <header class="nav" id="nav">
+    <a class="nav__logo" href="#top" aria-label="Anarchy — الرئيسية">
+      <span class="nav__mark" id="navMark"></span>
+      <span class="nav__word" dir="ltr">ANARCHY</span>
+    </a>
+
+    <nav class="nav__links" aria-label="التنقل">
+      <a href="#about">الكيان</a>
+      <a href="#ranks">القادة</a>
+      <a href="#live">البث<span class="nav__live" id="navLive" aria-hidden="true"></span></a>
+      <a href="#codex">القوانين</a>
+      <a href="#join">الانضمام</a>
+    </nav>
+
+    <div class="nav__actions">
+      <button class="sound" id="soundBtn" type="button" aria-pressed="false" aria-label="تشغيل الصوت">
+        <span class="sound__bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span class="sound__label">SOUND</span>
+      </button>
+      <a class="btn btn--sm btn--blood" href="#join"><span>انضم</span></a>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ================= HERO ================= -->
+    <section class="hero" id="hero">
+      <canvas class="hero__embers" id="embers" aria-hidden="true"></canvas>
+      <div class="hero__glow" aria-hidden="true"></div>
+      <div class="hero__grid" aria-hidden="true"></div>
+
+      <div class="hero__meta hero__meta--tr" aria-hidden="true">
+        <span>EST. 2024</span><span>FIVEM / CREW</span><span>ID // 001</span>
+      </div>
+      <div class="hero__meta hero__meta--bl" aria-hidden="true">
+        <span>LAT 34.05</span><span>LONG -118.24</span><span>STATUS: LIVE</span>
+      </div>
+
+      <div class="hero__body">
+        <div class="hero__emblem" id="heroEmblem" aria-hidden="true"></div>
+
+        <p class="hero__kicker reveal" style="--d:.1s">
+          <i class="dot"></i> عيلة واحدة · فوضى واحدة · كلمة واحدة
+        </p>
+
+        <h1 class="hero__title" id="heroTitle" data-text="ANARCHY" dir="ltr">ANARCHY</h1>
+
+        <div class="hero__cta reveal" style="--d:.45s">
+          <a class="btn btn--blood" href="#join" data-magnet><span>انضم للكيان</span></a>
+          <a class="btn btn--ghost" href="#codex" data-magnet><span>اقرا القوانين</span></a>
+        </div>
+
+        <div class="hero__tagline reveal" style="--d:.8s" dir="ltr" aria-hidden="true">
+          <span>NO RULES</span><i>✦</i><span>NO MERCY</span><i>✦</i><span>ONE FAMILY</span>
+        </div>
+      </div>
+
+      <a class="hero__scroll" href="#about" aria-label="انزل تحت">
+        <span>SCROLL</span>
+        <i></i>
+      </a>
+    </section>
+
+    <!-- ================= MARQUEE ================= -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker__track">
+        <span>ANARCHY <i>✦</i> NO RULES <i>✦</i> NO MERCY <i>✦</i> ONE FAMILY <i>✦</i> LOYALTY OVER EVERYTHING <i>✦</i></span>
+        <span>ANARCHY <i>✦</i> NO RULES <i>✦</i> NO MERCY <i>✦</i> ONE FAMILY <i>✦</i> LOYALTY OVER EVERYTHING <i>✦</i></span>
+      </div>
+    </div>
+
+    <!-- ================= ABOUT ================= -->
+    <section class="section about" id="about">
+      <div class="section__head">
+        <span class="kicker">01 — الكيان</span>
+        <h2 class="section__title">مش عصابة.<br /><em>ده كيان.</em></h2>
+      </div>
+
+      <div class="about__grid">
+        <div class="about__text">
+          <p class="about__lead reveal">
+            مش كل اللي بيتجمعوا يبقوا <em>عيلة</em>، ومش كل اللي يشيلوا نفس الاسم
+            يبقوا <em>شبه بعض</em>.
+          </p>
+
+          <p class="reveal" style="--d:.08s">
+            <span class="about__name-tag">Anarchy</span> عمرها ما كانت مجرد اسم وسط
+            الأسامي، دي حكاية ناس اختارت تكون جنب بعض، في وقت الكل فيه بيدوّر على
+            مصلحته.
+          </p>
+
+          <p class="reveal" style="--d:.16s">
+            عندنا الاختلاف <em>مش خلاف</em>، والغياب <em>مش نسيان</em>، واللي بينا
+            أكبر من إنه يتحكي في كام سطر.
+          </p>
+
+          <p class="reveal" style="--d:.24s">
+            مش بنحاول نلفت نظر حد، ولا مستنيين اعتراف من حد. كل اللي يهمنا إننا
+            نفضل زي ما إحنا، مهما اتغيرت الوجوه واتبدلت الأماكن.
+          </p>
+
+          <blockquote class="about__quote reveal" style="--d:.32s">
+            في النهاية، الأسامي ممكن تتكرر، لكن مش كل اسم وراه حكاية تستاهل تتحكي.
+          </blockquote>
+        </div>
+
+        <div class="stats">
+          <div class="stat reveal" style="--d:.05s">
+            <span class="stat__num" data-count="47">0</span>
+            <span class="stat__label">عضو في العيلة</span>
+          </div>
+          <div class="stat reveal" style="--d:.15s">
+            <span class="stat__num" data-count="23">0</span>
+            <span class="stat__label">حرب مكسوبة</span>
+          </div>
+          <div class="stat reveal" style="--d:.25s">
+            <span class="stat__num" data-count="340" data-suffix="+">0</span>
+            <span class="stat__label">عملية ناجحة</span>
+          </div>
+          <div class="stat reveal" style="--d:.35s">
+            <span class="stat__num" data-count="100" data-suffix="%">0</span>
+            <span class="stat__label">ولاء</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= LEADERS ================= -->
+    <section class="section ranks" id="ranks">
+      <div class="section__head">
+        <span class="kicker">02 — القادة</span>
+      </div>
+
+      <div class="ranks__grid ranks__grid--duo">
+        <article class="rank rank--boss reveal" style="--d:.05s">
+          <div class="leader__media">
+            <img class="leader__img" src="shenzoe.webp" alt="Shenzoe — Boss" loading="lazy" />
+            <span class="leader__veil" aria-hidden="true"></span>
+            <span class="rank__idx">01</span>
+          </div>
+          <div class="leader__body">
+            <span class="rank__tag">BOSS</span>
+            <h3 class="rank__name" dir="ltr">Shenzoe</h3>
+            <div class="rank__foot">
+              <span class="rank__count">المؤسس</span>
+              <a class="rank__link" href="https://kick.com/shenzoe" target="_blank" rel="noopener">KICK ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="rank rank--devil reveal" style="--d:.14s">
+          <div class="leader__media">
+            <img class="leader__img" src="devil.png" alt="Devil — Co-Boss" loading="lazy" />
+            <span class="leader__veil" aria-hidden="true"></span>
+
+            <svg class="devil-bg" viewBox="0 0 400 400" aria-hidden="true" focusable="false">
+              <defs>
+                <radialGradient id="dvGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0" stop-color="#ff2b2b" stop-opacity=".42" />
+                  <stop offset="55%" stop-color="#8b060c" stop-opacity=".14" />
+                  <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+                </radialGradient>
+                <linearGradient id="dvHorn" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#ff5a4a" />
+                  <stop offset="1" stop-color="#2a0003" />
+                </linearGradient>
+                <filter id="dvBlur" x="-80%" y="-80%" width="260%" height="260%">
+                  <feGaussianBlur stdDeviation="7" />
+                </filter>
+              </defs>
+
+              <circle cx="200" cy="215" r="196" fill="url(#dvGlow)" />
+
+              <g stroke="#ff2b2b" stroke-opacity=".18" fill="none" stroke-width="2">
+                <circle cx="200" cy="210" r="148" stroke-dasharray="18 10" />
+                <path d="M200 62 L288 332 L58 164 L342 164 L112 332 Z" />
+              </g>
+
+              <g fill="url(#dvHorn)" stroke="#1a0002" stroke-width="3" stroke-linejoin="miter" opacity=".55">
+                <path d="M150 186 C128 144 100 106 54 82 C76 126 96 168 118 212 Z" />
+                <path d="M250 186 C272 144 300 106 346 82 C324 126 304 168 282 212 Z" />
+              </g>
+            </svg>
+
+            <span class="rank__idx">02</span>
+          </div>
+          <div class="leader__body">
+            <span class="rank__tag rank__tag--devil">CO-BOSS</span>
+            <h3 class="rank__name rank__name--devil" dir="ltr">Devil</h3>
+            <div class="rank__foot">
+              <span class="rank__count">الذراع اليمين</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= LIVE ================= -->
+    <section class="section live" id="live">
+      <div class="section__head">
+        <span class="kicker">03 — البث</span>
+      </div>
+
+      <div class="live__card reveal" id="liveCard" data-state="loading">
+        <aside class="live__profile">
+          <div class="live__avatar" id="liveAvatar">
+            <span>SH</span>
+          </div>
+          <h3 class="live__name" dir="ltr" id="liveName">Shenzoe</h3>
+          <p class="live__role">قائد عيلة Anarchy</p>
+
+          <div class="live__stats">
+            <div>
+              <b id="liveFollowers">—</b>
+              <span>Follower</span>
+            </div>
+            <div>
+              <b id="liveCategory">—</b>
+              <span>Category</span>
+            </div>
+          </div>
+
+          <a class="btn btn--blood btn--wide" id="liveOpen" href="https://kick.com/shenzoe"
+             target="_blank" rel="noopener"><span>افتح على Kick</span></a>
+
+          <p class="live__hint" id="liveHint">بنتحقق من الحالة…</p>
+        </aside>
+
+        <div class="live__screen">
+          <div class="live__status" id="liveStatus" data-state="loading">
+            <i></i><span id="liveStatusText">CHECKING</span>
+          </div>
+
+          <div class="live__frame" id="liveFrame">
+            <div class="live__poster" id="livePoster">
+              <div class="live__poster-mark" id="livePosterMark" aria-hidden="true"></div>
+              <div class="live__offline">
+                <span class="live__offline-word">OFFLINE</span>
+                <p>مش لايف دلوقتي… بس سيب الصفحة مفتوحة.</p>
+              </div>
+            </div>
+            <div class="live__scan" aria-hidden="true"></div>
+            <span class="live__corner live__corner--tl" aria-hidden="true"></span>
+            <span class="live__corner live__corner--br" aria-hidden="true"></span>
+          </div>
+
+          <div class="live__meta">
+            <span class="live__viewers" id="liveViewers">—</span>
+            <span class="live__title" id="liveTitle">مفيش بث شغّال دلوقتي</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CODEX ================= -->
+    <section class="section codex" id="codex">
+      <div class="codex__bg" aria-hidden="true">CODE</div>
+      <div class="section__head">
+        <span class="kicker">04 — القوانين</span>
+        <h2 class="section__title">ستة قوانين.<br /><em>ولا واحدة قابلة للنقاش.</em></h2>
+      </div>
+
+      <ol class="codex__list">
+        <li class="codex__item reveal">
+          <span class="codex__num">01</span>
+          <div><h3>الولاء قبل أي حاجة</h3><p>اللي بيبيع اسم العيلة مرة، عمره ما هيرجع تاني.</p></div>
+        </li>
+        <li class="codex__item reveal" style="--d:.06s">
+          <span class="codex__num">02</span>
+          <div><h3>احترام للكل، تنازل لمحدش</h3><p>إحنا مش بنبدأ خناقة، بس بنخلّصها.</p></div>
+        </li>
+        <li class="codex__item reveal" style="--d:.12s">
+          <span class="codex__num">03</span>
+          <div><h3>السرية خط أحمر</h3><p>اللي بيتكلم برّه، بيتحاسب جوّه.</p></div>
+        </li>
+        <li class="codex__item reveal" style="--d:.18s">
+          <span class="codex__num">04</span>
+          <div><h3>الحضور مش اختيار</h3><p>الغياب من غير كلمة، هو انسحاب من غير كلمة.</p></div>
+        </li>
+        <li class="codex__item reveal" style="--d:.24s">
+          <span class="codex__num">05</span>
+          <div><h3>اسم العيلة فوق الشخص</h3><p>مفيش مشاكل شخصية تتخلط باسم Anarchy.</p></div>
+        </li>
+        <li class="codex__item reveal" style="--d:.3s">
+          <span class="codex__num">06</span>
+          <div><h3>القرار للقيادة</h3><p>النقاش قبل التنفيذ… مش بعده.</p></div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ================= JOIN ================= -->
+    <section class="section join" id="join">
+      <div class="join__ghost" aria-hidden="true">ANARCHY</div>
+
+      <div class="join__card reveal">
+        <span class="kicker">05 — الانضمام</span>
+        <h2 class="join__title">عايز تقدّم؟<br /><em>نوّرنا في الديسكورد.</em></h2>
+
+        <ul class="join__req">
+          <li><span>01</span> سن 16+ وجدية كاملة</li>
+          <li><span>02</span> مايك شغال وديسكورد</li>
+          <li><span>03</span> التزام بالحضور والتدريبات</li>
+          <li><span>04</span> سيرة نضيفة على السيرفر</li>
+        </ul>
+
+        <div class="join__tag">
+          <span class="join__tag-label">TAG</span>
+          <code id="tagValue">ANARCHY#0001</code>
+          <button class="join__copy" id="copyBtn" type="button">نسخ</button>
+        </div>
+
+        <a class="btn btn--blood btn--wide" href="https://discord.gg/eUswTRtS2"
+           target="_blank" rel="noopener" data-magnet>
+          <span>ادخل ديسكورد العيلة</span>
+        </a>
+
+        <p class="join__note">
+          أو على طول: <a class="join__link" href="https://discord.gg/eUswTRtS2"
+          target="_blank" rel="noopener" dir="ltr">discord.gg/eUswTRtS2</a>
+          — التذكرة بتتقفل تلقائيًا لو مردّتش خلال 48 ساعة.
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= OUTRO ================= -->
+    <section class="outro">
+      <h2 class="outro__mega" dir="ltr" data-text="ANARCHY">ANARCHY</h2>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__left">
+      <span class="footer__mark" id="footMark"></span>
+      <span class="footer__word" dir="ltr">ANARCHY</span>
+    </div>
+    <p class="footer__note">كل الحقوق مش محفوظة. إحنا مش بنحب القوانين.</p>
+    <div class="footer__right">
+      <a class="footer__top" href="https://discord.gg/eUswTRtS2" target="_blank" rel="noopener">DISCORD ↗</a>
+      <a class="footer__top" href="#top">TOP ↑</a>
+    </div>
+  </footer>
+</div>
+
+<!-- ===== TOAST ===== -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- ===== GLITCH FLASH (EASTER EGG) ===== -->
+<div class="glitch-flash" id="glitchFlash" aria-hidden="true"></div>
+
+<!-- ===== EMBLEM TEMPLATE ===== -->
+<template id="emblemTpl">
+  <svg class="emblem" viewBox="0 0 500 500" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="emRed" x1="0" y1="0" x2="0.3" y2="1">
+        <stop offset="0" stop-color="#ff8577" />
+        <stop offset="0.32" stop-color="#ff2b2b" />
+        <stop offset="0.72" stop-color="#b40a11" />
+        <stop offset="1" stop-color="#4a0206" />
+      </linearGradient>
+      <linearGradient id="emBlade" x1="0" y1="1" x2="1" y2="0">
+        <stop offset="0" stop-color="#7a0208" />
+        <stop offset="0.5" stop-color="#ff3b2f" />
+        <stop offset="1" stop-color="#5c0208" />
+      </linearGradient>
+    </defs>
+
+    <g class="emblem__spin">
+      <!-- wings -->
+      <g class="emblem__blades" fill="url(#emRed)">
+        <path d="M156 236 C110 196 60 148 22 94 L54 76 C96 146 132 190 176 212 Z" />
+        <path d="M344 236 C390 196 440 148 478 94 L446 76 C404 146 368 190 324 212 Z" />
+        <path d="M150 354 C106 374 62 406 30 454 L62 472 C92 424 130 396 168 380 Z" />
+        <path d="M350 354 C394 374 438 406 470 454 L438 472 C408 424 370 396 332 380 Z" />
+      </g>
+
+      <!-- dagger slash -->
+      <g class="emblem__slash" stroke="url(#emBlade)" stroke-linecap="square">
+        <path d="M60 440 L440 60" stroke-width="5" opacity=".85" />
+        <path d="M440 440 L60 60" stroke-width="2.5" opacity=".25" />
+      </g>
+
+      <!-- broken ring -->
+      <circle class="emblem__ring" cx="250" cy="250" r="172" fill="none"
+              stroke="#ff2b2b" stroke-width="8" stroke-opacity=".85" stroke-linecap="butt"
+              stroke-dasharray="470 46 262 46 176 44" />
+
+      <!-- the A -->
+      <g class="emblem__a">
+        <path fill="url(#emRed)" stroke="#1a0002" stroke-width="3" stroke-linejoin="miter"
+              d="M250 56 L386 414 L330 414 L250 196 L170 414 L114 414 Z" />
+        <path fill="url(#emRed)" stroke="#1a0002" stroke-width="3" stroke-linejoin="miter"
+              d="M168 300 L332 300 L332 344 L168 344 Z" />
+      </g>
+    </g>
+  </svg>
+</template>
+
+<script src="script.js?v=4"></script>
+</body>
+</html>
