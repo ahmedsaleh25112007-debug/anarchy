@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Cairo:wght@400;600;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css?v=7" />
+<link rel="stylesheet" href="styles.css?v=8" />
 <link rel="preconnect" href="https://files.kick.com" crossorigin />
 </head>
 <body class="is-loading">
@@ -133,15 +133,16 @@
         <span class="kicker">01 — القادة</span>
       </div>
 
-      <div class="ranks__grid ranks__grid--quad">
+      <div class="org-tree">
+        <div class="org-tree__level org-tree__level--1 org-tree__level--owner">
         <article class="rank rank--boss reveal" style="--d:.05s">
           <div class="leader__media">
-            <img class="leader__img" src="shenzoe.webp" alt="Shenzoe — Boss" loading="lazy" />
+            <img class="leader__img" src="shenzoe.webp" alt="Shenzoe - Owner" loading="lazy" />
             <span class="leader__veil" aria-hidden="true"></span>
             <span class="rank__idx">01</span>
           </div>
           <div class="leader__body">
-            <span class="rank__tag">BOSS</span>
+            <span class="rank__tag rank__tag--owner">OWNER</span>
             <h3 class="rank__name" dir="ltr">Shenzoe</h3>
             <div class="rank__foot">
               <span class="rank__count">المؤسس</span>
@@ -149,10 +150,12 @@
             </div>
           </div>
         </article>
+        </div>
 
+        <div class="org-tree__level org-tree__level--2 org-tree__level--coowner">
         <article class="rank rank--devil reveal" style="--d:.14s">
           <div class="leader__media">
-            <img class="leader__img" src="devil.webp" alt="Devil — Co-Boss" loading="lazy" />
+            <img class="leader__img" src="devil.webp" alt="Devil - Co-Owner" loading="lazy" />
             <span class="leader__veil" aria-hidden="true"></span>
 
             <svg class="devil-bg" viewBox="0 0 400 400" aria-hidden="true" focusable="false">
@@ -187,34 +190,21 @@
             <span class="rank__idx">02</span>
           </div>
           <div class="leader__body">
-            <span class="rank__tag rank__tag--devil">CO-BOSS</span>
+            <span class="rank__tag rank__tag--devil">CO-OWNER</span>
             <h3 class="rank__name rank__name--devil" dir="ltr">Devil</h3>
             <div class="rank__foot">
               <span class="rank__count">الذراع اليمين</span>
             </div>
           </div>
         </article>
+        </div>
 
-        <article class="rank rank--sultan reveal" style="--d:.23s">
-          <div class="leader__media leader__media--sultan">
-            <img class="leader__img" src="sultan.webp" alt="سلطان الغول — Leader" loading="lazy" />
+        <div class="org-tree__level org-tree__level--3 org-tree__level--staff">
+        <article class="rank rank--joo reveal" style="--d:.23s">
+          <div class="leader__media leader__media--joo">
+            <img class="leader__img" src="joo.webp" alt="JOO - Leader" loading="lazy" />
             <span class="leader__veil" aria-hidden="true"></span>
             <span class="rank__idx">03</span>
-          </div>
-          <div class="leader__body">
-            <span class="rank__tag rank__tag--sultan">MANAGER</span>
-            <h3 class="rank__name rank__name--sultan" dir="ltr">Sultan El-Ghoul</h3>
-            <div class="rank__foot">
-              <span class="rank__count">القيادة</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="rank rank--joo reveal" style="--d:.32s">
-          <div class="leader__media leader__media--joo">
-            <img class="leader__img" src="joo.webp" alt="JOO — Leader" loading="lazy" />
-            <span class="leader__veil" aria-hidden="true"></span>
-            <span class="rank__idx">04</span>
           </div>
           <div class="leader__body">
             <span class="rank__tag rank__tag--joo">LEADER</span>
@@ -224,6 +214,22 @@
             </div>
           </div>
         </article>
+
+        <article class="rank rank--sultan reveal" style="--d:.32s">
+          <div class="leader__media leader__media--sultan">
+            <img class="leader__img" src="sultan.webp" alt="Sultan El-Ghoul - Manager" loading="lazy" />
+            <span class="leader__veil" aria-hidden="true"></span>
+            <span class="rank__idx">04</span>
+          </div>
+          <div class="leader__body">
+            <span class="rank__tag rank__tag--sultan">MANAGER</span>
+            <h3 class="rank__name rank__name--sultan" dir="ltr">Sultan El-Ghoul</h3>
+            <div class="rank__foot">
+              <span class="rank__count">القيادة</span>
+            </div>
+          </div>
+        </article>
+        </div>
       </div>
     </section>
 
