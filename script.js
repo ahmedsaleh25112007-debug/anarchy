@@ -13,22 +13,6 @@
   document.documentElement.classList.add('js');
 
   /* ---------------------------------------------------------
-     0. Emblem injection
-     --------------------------------------------------------- */
-  const emblemTpl = $('#emblemTpl');
-  const rawEmblem = emblemTpl ? emblemTpl.innerHTML : '';
-  let emblemSeq = 0;
-
-  ['#preEmblem', '#heroEmblem', '#navMark', '#footMark'].forEach(sel => {
-    const host = $(sel);
-    if (!host || !rawEmblem) return;
-    const k = 'e' + (++emblemSeq);
-    host.innerHTML = rawEmblem
-      .replaceAll('emRed', 'emRed-' + k)
-      .replaceAll('emBlade', 'emBlade-' + k);
-  });
-
-  /* ---------------------------------------------------------
      1. Hero title — split into letters
      --------------------------------------------------------- */
   const titleEl = $('#heroTitle');
@@ -588,8 +572,6 @@
     const navDot     = $('#navLive');
     const openBtn    = $('#liveOpen');
 
-    const mark = $('#livePosterMark');
-    if (mark) mark.innerHTML = rawEmblem ? rawEmblem : '';
 
     const CHANNEL_URL = `https://kick.com/api/v2/channels/${LIVE.slug}`;
     const CACHE_KEY = 'anarchy:kick:v1';
