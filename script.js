@@ -234,20 +234,27 @@
 
     let mx = window.innerWidth / 2, my = window.innerHeight / 2;
     let rx = mx, ry = my;
+    let running = false;
+    const ring = cursor.querySelector('.cursor__ring');
+
+    const loop = () => {
+      rx = lerp(rx, mx, 0.2);
+      ry = lerp(ry, my, 0.2);
+      if (ring) ring.style.transform = `translate3d(${(rx - mx).toFixed(2)}px, ${(ry - my).toFixed(2)}px, 0)`;
+
+      if (Math.abs(rx - mx) > 0.4 || Math.abs(ry - my) > 0.4) {
+        requestAnimationFrame(loop);
+      } else {
+        running = false;
+        if (ring) ring.style.transform = 'translate3d(0,0,0)';
+      }
+    };
 
     window.addEventListener('mousemove', e => {
       mx = e.clientX; my = e.clientY;
-      cursor.style.transform = `translate(${mx}px, ${my}px)`;
+      cursor.style.transform = `translate3d(${mx}px, ${my}px, 0)`;
+      if (!running) { running = true; requestAnimationFrame(loop); }
     }, { passive: true });
-
-    const loop = () => {
-      rx = lerp(rx, mx, 0.16);
-      ry = lerp(ry, my, 0.16);
-      const ring = cursor.querySelector('.cursor__ring');
-      if (ring) ring.style.transform = `translate(${rx - mx}px, ${ry - my}px)`;
-      requestAnimationFrame(loop);
-    };
-    loop();
 
     const hot = 'a, button, .rank, .stat, .codex__item, .join__tag';
     document.addEventListener('mouseover', e => {
@@ -371,45 +378,26 @@
   function initTilt() {
     if (reduceMotion || !window.matchMedia('(hover: fine)').matches) return;
 
-    $$('.rank').forEach(card => {
-      card.addEventListener('mousemove', e => {
-        const r = card.getBoundingClientRect();
-        const px = (e.clientX - r.left) / r.width - 0.5;
-        const py = (e.clientY - r.top) / r.height - 0.5;
-        card.style.transform =
-          `translateY(-7px) rotateX(${(-py * 6).toFixed(2)}deg) rotateY(${(px * 8).toFixed(2)}deg)`;
-      });
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = '';
-      });
-    });
-
     $$('[data-magnet]').forEach(btn => {
+      let queued = false;
+      let px = 0, py = 0;
+
       btn.addEventListener('mousemove', e => {
         const r = btn.getBoundingClientRect();
-        const x = (e.clientX - r.left - r.width / 2) * 0.22;
-        const y = (e.clientY - r.top - r.height / 2) * 0.28;
-        btn.style.transform = `translate(${x}px, ${y}px)`;
-      });
+        px = (e.clientX - r.left - r.width / 2) * 0.22;
+        py = (e.clientY - r.top - r.height / 2) * 0.28;
+        if (queued) return;
+        queued = true;
+        requestAnimationFrame(() => {
+          queued = false;
+          btn.style.transform = `translate3d(${px.toFixed(1)}px, ${py.toFixed(1)}px, 0)`;
+        });
+      }, { passive: true });
+
       btn.addEventListener('mouseleave', () => {
         btn.style.transform = '';
       });
     });
-
-    // emblem parallax
-    const emblem = $('#heroEmblem');
-    const hero = $('#hero');
-    if (emblem && hero) {
-      hero.addEventListener('mousemove', e => {
-        const r = hero.getBoundingClientRect();
-        const px = (e.clientX - r.left) / r.width - 0.5;
-        const py = (e.clientY - r.top) / r.height - 0.5;
-        emblem.style.transform = `translate(${px * 26}px, ${py * 18}px) rotate(${px * 5}deg)`;
-      });
-      hero.addEventListener('mouseleave', () => {
-        emblem.style.transform = '';
-      });
-    }
   }
 
   /* ---------------------------------------------------------
