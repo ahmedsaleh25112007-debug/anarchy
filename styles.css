@@ -397,7 +397,6 @@ html.cursor-hot .cursor__ring{
   background:
     radial-gradient(circle,rgba(225,18,27,.30) 0%,rgba(140,6,12,.12) 32%,transparent 62%);
   z-index:0;
-  animation:heroGlow 7s ease-in-out infinite;
 }
 @keyframes heroGlow{
   0%,100%{opacity:.75;transform:translate(-50%,-50%) scale(1);}
@@ -437,7 +436,6 @@ html.cursor-hot .cursor__ring{
   width:clamp(150px,25vw,278px);
   margin-bottom:-14px;
   transform-origin:center;
-  animation:emblemFloat 8s ease-in-out infinite;
 }
 .hero__emblem::before{
   content:'';
@@ -790,6 +788,17 @@ body.is-ready .hero__title .ch{
 
 .rank__name,
 .rank__desc,
+/* hover lift بدل الميلان بالجافاسكريبت (أخف بكتير) */
+.rank{
+  transition:transform .4s var(--ease), border-color .4s, box-shadow .4s;
+  transform:translateZ(0);
+}
+.rank:hover{
+  transform:translateY(-6px);
+  border-color:rgba(225,18,27,.5);
+  box-shadow:0 22px 50px -22px rgba(225,18,27,.55);
+}
+
 .rank__count{position:relative;z-index:2;}
 
 .rank__idx{
@@ -1261,12 +1270,12 @@ body.is-glitching{animation:shake .45s steps(2) 1;}
 /* ============ REVEAL ============ */
 .reveal{
   opacity:0;
-  transform:translateY(34px);
-  filter:blur(8px);
-  transition:opacity .9s var(--ease),transform 1s var(--ease),filter 1s var(--ease);
+  transform:translate3d(0,34px,0);
+  transition:opacity .8s var(--ease),transform .9s var(--ease);
   transition-delay:var(--d,0s);
+  will-change:opacity,transform;
 }
-.reveal.is-in{opacity:1;transform:none;filter:none;}
+.reveal.is-in{opacity:1;transform:translate3d(0,0,0);}
 
 /* ============ LIVE / KICK ============ */
 .live__card{
@@ -1458,7 +1467,7 @@ body.is-glitching{animation:shake .45s steps(2) 1;}
   opacity:.2;
   z-index:2;
   filter:grayscale(.2);
-  animation:emblemFloat 9s ease-in-out infinite;
+
   pointer-events:none;
 }
 .live__offline{
